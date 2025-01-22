@@ -1,3 +1,4 @@
+import httpx
 from fastapi import FastAPI,status
 from pydantic import BaseModel
 from typing import Optional
@@ -16,5 +17,24 @@ async def start_task_endpoint(task_request: AnalyzePRrequest):
         "pr_number": task_request.pr_number,
         "github_token": task_request.github_token,
     }
+    async with httpx.AsyncClient() as client:
+        resp= await client.post(
+            "http://127.0.0.1:8000/start_task/",
+            data=data
+        )
+        if resp.status_code != 200:
+            return {"status": "Task failed to start"}
+
     print(data)
-    return {"task_id": '123', 'status':'Task started'}
+    task_id = resp.json()["task_id"]
+    return {"task_id": task_id, "status": "Task started"}
+
+
+@app.get("/task_status/{task_id}")
+async def task_status_endpoint(task_id: str):
+    async with httpx.AsyncClient() as client:
+        resp = await client.get(
+            f"http://127.0.0.1:8000/task_status/{task_id}",
+        )
+        return resp.json()
+    return {"status": "Task not found"}, status.HTTP_404_NOT_FOUND
