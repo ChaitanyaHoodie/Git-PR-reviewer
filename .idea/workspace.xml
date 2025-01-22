@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9dd8ae7c-2130-4272-b58f-d7dfe38c5099" name="Changes" comment="celery setup basic done">
-      <change afterPath="$PROJECT_DIR$/django_app/home/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/django_app/home/utils/github.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts.py" afterDir="false" />
+    <list default="true" id="9dd8ae7c-2130-4272-b58f-d7dfe38c5099" name="Changes" comment="celery setup complete + 3 functions to fetch owner and repo from urls+ function for fetch repo pr file changes+function to fetch the code and decode the contents from the repo pr file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_app/django_app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_app/django_app/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_app/django_app/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_app/django_app/celery.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_app/django_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_app/django_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_app/home/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_app/home/task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/django_app/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_app/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fastapi__app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/fastapi__app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,14 +42,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "Python.scripts.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scripts.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="PRreviewer" />
@@ -104,7 +106,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733254323619</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="celery setup complete + 3 functions to fetch owner and repo from urls+ function for fetch repo pr file changes+function to fetch the code and decode the contents from the repo pr file">
+      <option name="closed" value="true" />
+      <created>1733859290890</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733859290890</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,7 +131,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit, FastAPI set up done, django app launch done" />
     <MESSAGE value="celery setup basic done" />
-    <option name="LAST_COMMIT_MESSAGE" value="celery setup basic done" />
+    <MESSAGE value="celery setup complete + 3 functions to fetch owner and repo from urls+ function for fetch repo pr file changes+function to fetch the code and decode the contents from the repo pr file" />
+    <option name="LAST_COMMIT_MESSAGE" value="celery setup complete + 3 functions to fetch owner and repo from urls+ function for fetch repo pr file changes+function to fetch the code and decode the contents from the repo pr file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -130,6 +141,11 @@
           <url>file://$PROJECT_DIR$/main.py</url>
           <line>8</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/django_app/django_app/urls.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
