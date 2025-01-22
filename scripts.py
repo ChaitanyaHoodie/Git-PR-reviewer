@@ -6,9 +6,6 @@ print(base64.b64decode(code_str).decode())
 
 from groq import Groq
 
-key = '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'
-
-
 def analyze_code_with_llm(file_content, file_name):
     prompt = f"""
     Analyze the following code for:

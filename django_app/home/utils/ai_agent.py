@@ -1,6 +1,7 @@
 from groq import Groq
+from django.conf import settings
 
-key='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'
+key=settings.GROQ_KEY
 
 
 def analyze_code_with_llm(file_content,file_name):
