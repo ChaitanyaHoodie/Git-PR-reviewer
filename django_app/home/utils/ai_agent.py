@@ -1,5 +1,6 @@
 from groq import Groq
 from django.conf import settings
+from .prompts import system_prompt
 
 key=settings.GROQ_KEY
 
@@ -20,10 +21,10 @@ def analyze_code_with_llm(file_content,file_name):
     {{
         "issues": [
             {{
-                    'type': "<style|bugs|performance|best_practice>",
-                    'line': < line_number >,
-                    'description' : '<description>',
-                    'suggestion' : '<suggestion>',
+                    "type": "<style|bugs|performance|best_practice>",
+                    "line": < line_number >,
+                    "description" : "<description>",
+                    "suggestion" : "<suggestion>",
             }}
         ]
     }}
@@ -32,8 +33,9 @@ def analyze_code_with_llm(file_content,file_name):
 
     client = Groq(api_key=key)
     completion= client.chat.completions.create(
-        model='llama3-groq-8b-8192-tool-use-preview',
+        model='llama3-8b-8192',
         messages=[
+            {'role': 'system', 'content': system_prompt},
             {
                 "role" : "user",
                 "content" : prompt
@@ -43,3 +45,4 @@ def analyze_code_with_llm(file_content,file_name):
         top_p=1
     )
     print(completion.choices[0].message.content)
+    return completion.choices[0].message.content
