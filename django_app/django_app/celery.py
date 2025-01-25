@@ -24,5 +24,5 @@ def debug_task(self):
     print(f'Request: {self.request!r}')
 
 
-import eventlet
-eventlet.monkey_patch()
+# import eventlet
+# eventlet.monkey_patch()
