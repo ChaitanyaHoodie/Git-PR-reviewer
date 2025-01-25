@@ -10,7 +10,7 @@ class AnalyzePRrequest(BaseModel):
     pr_number: int
     github_token:Optional[str]=None
 
-@app.post("/start_task")
+@app.post("/start_task/")
 async def start_task_endpoint(task_request: AnalyzePRrequest):
     data={
         "repo_url": task_request.repo_url,
@@ -19,14 +19,14 @@ async def start_task_endpoint(task_request: AnalyzePRrequest):
     }
     async with httpx.AsyncClient() as client:
         resp= await client.post(
-            "http://127.0.0.1:8000/start_task/",
+            "http://127.0.0.1:8001/start_task/",
             data=data
         )
         if resp.status_code != 200:
-            return {"status": "Task failed to start"}
+            return {"status": "Task failed to start", "details": resp.text}
 
     print(data)
-    task_id = resp.json()["task_id"]
+    task_id = resp.json().get('task_id')
     return {"task_id": task_id, "status": "Task started"}
 
 
@@ -34,7 +34,7 @@ async def start_task_endpoint(task_request: AnalyzePRrequest):
 async def task_status_endpoint(task_id: str):
     async with httpx.AsyncClient() as client:
         resp = await client.get(
-            f"http://127.0.0.1:8000/task_status/{task_id}",
+            f"http://127.0.0.1:8001/task_status/{task_id}",
         )
         return resp.json()
     return {"status": "Task not found"}, status.HTTP_404_NOT_FOUND
